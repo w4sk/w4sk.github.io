@@ -1,0 +1,146 @@
+import React from 'react';
+import './Profile.css';
+import { siteConfig } from '../config';
+
+const Profile: React.FC = () => {
+  const { name, nameEn, affiliation, contact, biography } = siteConfig;
+
+  return (
+    <section id="profile" className="profile-section">
+      <div className="container">
+        {/* Profile Main Row (Name and Image) */}
+        <div className="profile-main-row">
+          <div className="profile-image-container">
+            <img src="/assets/profile.png" alt={nameEn} className="profile-image" />
+          </div>
+
+          <div className="profile-content">
+            <div className="profile-header">
+              <div className="name-main">{name}</div>
+              <div className="name-sub">
+                <span className="en">{nameEn}</span>
+              </div>
+            </div>
+            
+            <div className="affiliation-group">
+              {affiliation.map((item, index) => (
+                <div key={index} className="affiliation-item">
+                  {typeof item === "string" ? (
+                    item
+                  ) : (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+                      {item.text}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="social-links">
+              <a href={contact.x} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+              </a>
+              <a href={contact.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+                </svg>
+              </a>
+              <a href={`mailto:${contact.email}`} className="social-icon" aria-label="Email">
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor">
+                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a1.75 1.75 0 01-1.85 0L1.5 8.67z"></path>
+                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a.25.25 0 00.264 0L22.5 6.908z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BIOGRAPHY Section (Full Width Divider) */}
+      <div className="biography-divider"></div>
+
+      <div className="container">
+        <div id="biography" className="biography-section">
+          <h3 className="section-title">BIOGRAPHY</h3>
+          
+          <div className="biography-blocks">
+            <div className="biography-block">
+              <h4 className="block-label">学歴</h4>
+              <div className="biography-list">
+                {biography.education.map((item, index) => (
+                  <div key={index} className="bio-item">
+                    <span className="bio-year">{item.year}</span>
+                    <span className="bio-desc">
+                      {Array.isArray(item.desc) ? (
+                        item.desc.map((part, i) => 
+                          typeof part === 'string' ? (
+                            part
+                          ) : (
+                            <a key={i} href={part.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+                              {part.text}
+                            </a>
+                          )
+                        )
+                      ) : item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+                          {item.desc}
+                        </a>
+                      ) : (
+                        item.desc
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="biography-block">
+              <h4 className="block-label">職歴</h4>
+              <div className="biography-list">
+                {biography.experience.map((item, index) => (
+                  <div key={index} className="bio-item">
+                    <span className="bio-year">{item.year}</span>
+                    <span className="bio-desc">
+                      {Array.isArray(item.desc) ? (
+                        item.desc.map((part, i) => 
+                          typeof part === 'string' ? (
+                            part
+                          ) : (
+                            <a key={i} href={part.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+                              {part.text}
+                            </a>
+                          )
+                        )
+                      ) : item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+                          {item.desc}
+                        </a>
+                      ) : (
+                        item.desc
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {biography.awards && (
+              <div className="biography-block">
+                <h4 className="block-label">受賞歴</h4>
+                <div className="biography-list">
+                  <div className="bio-item bio-item-highlight">
+                    <span className="bio-desc">{biography.awards}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Profile;
