@@ -49,7 +49,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.engg.nagoya-u.ac.jp/",
+            url: "https://www.nuee.nagoya-u.ac.jp/",
           },
           " 博士後期課程",
         ],
@@ -59,7 +59,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.engg.nagoya-u.ac.jp/",
+            url: "https://www.nuee.nagoya-u.ac.jp/",
           },
           " 博士前期課程",
         ],
@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学工学部 電気電子情報工学科",
-            url: "https://www.nuee.nagoya-u.ac.jp/",
+            url: "https://www.engg.nagoya-u.ac.jp/",
           },
         ],
       },
@@ -142,6 +142,7 @@ export const siteConfig: SiteConfig = {
       journal: "IEEE Metacom 2025",
       authors:
         "Kohei Matsumoto, Yoshiki Watanabe, Kaiya Shimura, Nozomi Hayashida, Shin Katayama, Kenta Urano, Nobuo Kawaguchi, Soko Aoki, Leleito Emanuel, Takuro Yonezawa",
+      url: "https://db.uclab.jp/show/1546",
     },
     {
       year: "2025",
