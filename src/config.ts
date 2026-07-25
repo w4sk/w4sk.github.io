@@ -49,7 +49,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.engg.nagoya-u.ac.jp/",
+            url: "https://www.nuee.nagoya-u.ac.jp/",
           },
           " 博士後期課程",
         ],
@@ -59,7 +59,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.engg.nagoya-u.ac.jp/",
+            url: "https://www.nuee.nagoya-u.ac.jp/",
           },
           " 博士前期課程",
         ],
@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
         desc: [
           {
             text: "名古屋大学工学部 電気電子情報工学科",
-            url: "https://www.nuee.nagoya-u.ac.jp/",
+            url: "https://www.engg.nagoya-u.ac.jp/",
           },
         ],
       },
@@ -101,6 +101,18 @@ export const siteConfig: SiteConfig = {
     ],
   },
   publications: [
+    {
+      year: "2026",
+      month: "06",
+      type: "Domestic Conference",
+      title:
+        "主観的空間解釈の理解に向けた場所アフォーダンスと行為意味の乖離の分析",
+      journal: "マルチメディア、分散、協調とモバイル(DICOMO 2026) シンポジウム",
+      authors:
+        "渡辺 圭貴, 志村 魁哉, 出口 秀輝, 浦野 健太, 米澤 拓郎, 河口 信夫",
+      url: "https://db.uclab.jp/show/1582",
+      awards: "ヤングリサーチャー賞 受賞",
+    },
     {
       year: "2025",
       month: "09",
@@ -142,6 +154,7 @@ export const siteConfig: SiteConfig = {
       journal: "IEEE Metacom 2025",
       authors:
         "Kohei Matsumoto, Yoshiki Watanabe, Kaiya Shimura, Nozomi Hayashida, Shin Katayama, Kenta Urano, Nobuo Kawaguchi, Soko Aoki, Leleito Emanuel, Takuro Yonezawa",
+      url: "https://db.uclab.jp/show/1546",
     },
     {
       year: "2025",

@@ -97,10 +97,9 @@
 }
 
 .biography-divider {
-  border-top: 2px solid var(--primary);
+  border-top: 4px double var(--primary);
   margin: 60px 0;
   width: 100%;
-  opacity: 0.6;
 }
 
 .biography-section .section-title {
