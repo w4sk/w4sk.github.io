@@ -102,6 +102,18 @@ export const siteConfig: SiteConfig = {
   },
   publications: [
     {
+      year: "2026",
+      month: "06",
+      type: "Domestic Conference",
+      title:
+        "主観的空間解釈の理解に向けた場所アフォーダンスと行為意味の乖離の分析",
+      journal: "マルチメディア、分散、協調とモバイル(DICOMO 2026) シンポジウム",
+      authors:
+        "渡辺 圭貴, 志村 魁哉, 出口 秀輝, 浦野 健太, 米澤 拓郎, 河口 信夫",
+      url: "https://db.uclab.jp/show/1582",
+      awards: "ヤングリサーチャー賞 受賞",
+    },
+    {
       year: "2025",
       month: "09",
       type: "International Conference",
