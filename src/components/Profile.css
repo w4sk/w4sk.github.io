@@ -182,16 +182,23 @@
 
 @media (max-width: 992px) {
   .profile-main-row {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 40px;
   }
-  
-  .profile-image-container {
+
+  .profile-content {
     width: 100%;
-    max-width: 400px;
+    padding-top: 0;
+    padding-left: 24px;
   }
-  
+
+  .profile-image-container {
+    width: 79%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
   .name-main {
     font-size: 2.2rem;
   }
