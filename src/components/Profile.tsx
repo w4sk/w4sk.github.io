@@ -126,16 +126,6 @@ const Profile: React.FC = () => {
               </div>
             </div>
 
-            {biography.awards && (
-              <div className="biography-block">
-                <h4 className="block-label">受賞歴</h4>
-                <div className="biography-list">
-                  <div className="bio-item bio-item-highlight">
-                    <span className="bio-desc">{biography.awards}</span>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

@@ -8,6 +8,15 @@ export type Publication = {
   doi?: string;
   url?: string;
   awards?: string;
+  awardUrl?: string;
+};
+
+export type Award = {
+  year: string;
+  month: string;
+  category: string;
+  venue: string;
+  url?: string;
 };
 
 export type BioDescPart = string | { text: string; url: string };
@@ -24,8 +33,8 @@ export type SiteConfig = {
   biography: {
     education: { year: string; desc: string | BioDescPart[]; url?: string }[];
     experience: { year: string; desc: string | BioDescPart[]; url?: string }[];
-    awards?: string;
   };
+  awards: Award[];
   publications: Publication[];
 };
 
@@ -100,6 +109,15 @@ export const siteConfig: SiteConfig = {
       },
     ],
   },
+  awards: [
+    {
+      year: "2022",
+      month: "06",
+      category: "最優秀賞・日本自動車工業会会長賞",
+      venue: "自動運転AIチャレンジ2022（インテグレーション）チャレンジコース",
+      url: "https://www.jsae.or.jp/press/detail/143/",
+    },
+  ],
   publications: [
     {
       year: "2026",
@@ -112,6 +130,7 @@ export const siteConfig: SiteConfig = {
         "渡辺 圭貴, 志村 魁哉, 出口 秀輝, 浦野 健太, 米澤 拓郎, 河口 信夫",
       url: "https://db.uclab.jp/show/1582",
       awards: "ヤングリサーチャー賞 受賞",
+      awardUrl: "https://dicomo.org/commendation/",
     },
     {
       year: "2025",
@@ -210,6 +229,7 @@ export const siteConfig: SiteConfig = {
         "Ryuto Usami, Kisho Watanabe, Yuki Gushi, Shuto Tsutsui, Yoshiki Watanabe, Kazuma Kano, Yuya Aikawa, Kaiya Shimura, Nozomi Hayashida, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
       url: "https://db.uclab.jp/show/1509",
       awards: "Best Demo Award 受賞",
+      awardUrl: "https://www.ubicomp.org/ubicomp-iswc-2024/posters-and-demos-program/",
     },
     {
       year: "2024",
@@ -243,6 +263,7 @@ export const siteConfig: SiteConfig = {
         "Yoshiki Watanabe, Nozomi Hayashida, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
       url: "https://db.uclab.jp/show/1484",
       awards: "Best Demo Award 受賞",
+      awardUrl: "https://iot-conference.org/iot2023/",
     },
     {
       year: "2023",
@@ -276,6 +297,7 @@ export const siteConfig: SiteConfig = {
       authors: "渡辺 圭貴, 林田 望海, 浦野 健太, 米澤 拓郎, 河口 信夫",
       url: "https://db.uclab.jp/show/1454",
       awards: "インタラクティブ発表賞（一般投票）受賞",
+      awardUrl: "https://www.interaction-ipsj.org/2023/award",
     },
     {
       year: "2022",

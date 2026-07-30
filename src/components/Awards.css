@@ -1,0 +1,91 @@
+.awards-section {
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+.award-list {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.award-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(74, 144, 226, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.award-row:hover {
+  background-color: rgba(74, 144, 226, 0.02);
+}
+
+.award-date {
+  flex: 0 0 90px;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.award-venue {
+  flex: 0 0 620px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.award-link {
+  color: inherit;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.award-link:hover {
+  color: var(--primary);
+}
+
+.award-link-icon {
+  font-size: 0.85em;
+  opacity: 0.5;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: opacity 0.3s ease;
+}
+
+.award-link:hover .award-link-icon {
+  opacity: 1;
+}
+
+.award-category {
+  flex: 0 1 auto;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #a68b4c;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .awards-section {
+    padding: 40px 0;
+  }
+
+  .award-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .award-date,
+  .award-venue,
+  .award-category {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+}

@@ -29,6 +29,11 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
+              <a href="/" onClick={scrollTo("awards")}>
+                <span className="nav-en">AWARDS</span>
+              </a>
+            </li>
+            <li>
               <a href="/" onClick={scrollTo("publications")}>
                 <span className="nav-en">PUBLICATIONS</span>
               </a>
