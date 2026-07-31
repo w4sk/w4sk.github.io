@@ -9,6 +9,7 @@ export type Publication = {
   url?: string;
   awards?: string;
   awardUrl?: string;
+  highlight?: string;
 };
 
 export type Award = {
@@ -197,6 +198,7 @@ export const siteConfig: SiteConfig = {
       authors:
         "Yoshiteru Nagata, Daiki Kohama, Yoshiki Watanabe, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
       url: "https://db.uclab.jp/show/1541",
+      highlight: "Featured Article (Editor's Choice)",
     },
     {
       year: "2025",

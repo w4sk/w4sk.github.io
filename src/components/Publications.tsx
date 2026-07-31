@@ -84,6 +84,11 @@ const Publications: React.FC = () => {
                               <span className="pub-award-text">{pub.awards}</span>
                             </div>
                           )}
+                          {pub.highlight && (
+                            <div className="pub-highlight">
+                              <span className="pub-highlight-text">{pub.highlight}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
