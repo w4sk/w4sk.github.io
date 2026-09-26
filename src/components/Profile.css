@@ -51,6 +51,12 @@
   letter-spacing: 0.05em;
 }
 
+.name-sub .ja {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
 .affiliation-group {
   margin-top: 20px;
 }

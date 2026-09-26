@@ -1,19 +1,36 @@
 import React from 'react';
 import './Awards.css';
-import { siteConfig, type Award } from '../config';
+import { siteConfig } from '../config';
+import { tr, useLang } from '../i18n';
+
+type ResolvedAward = {
+  year: string;
+  month: string;
+  category: string;
+  venue: string;
+  url?: string;
+};
 
 const Awards: React.FC = () => {
-  const derived: Award[] = siteConfig.publications
+  const lang = useLang();
+
+  const derived: ResolvedAward[] = siteConfig.publications
     .filter((p) => p.awards)
     .map((p) => ({
       year: p.year,
       month: p.month,
-      category: p.awards!.replace(/\s*受賞\s*$/, ''),
+      category: tr(p.awards!, lang).replace(/\s*受賞\s*$/, ''),
       venue: p.journal,
       url: p.awardUrl,
     }));
 
-  const awards: Award[] = [...siteConfig.awards, ...derived].sort((a, b) => {
+  const listed: ResolvedAward[] = siteConfig.awards.map((a) => ({
+    ...a,
+    category: tr(a.category, lang),
+    venue: tr(a.venue, lang),
+  }));
+
+  const awards = [...listed, ...derived].sort((a, b) => {
     const ka = Number(a.year) * 100 + Number(a.month);
     const kb = Number(b.year) * 100 + Number(b.month);
     return kb - ka;

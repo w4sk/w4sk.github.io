@@ -1,6 +1,7 @@
 import React from 'react';
 import './Publications.css';
 import { siteConfig, type Publication } from '../config';
+import { tr, useLang } from '../i18n';
 
 const MY_NAMES = ["渡辺 圭貴", "渡辺圭貴", "Yoshiki Watanabe"];
 
@@ -24,6 +25,7 @@ const renderAuthors = (authors: string) => {
 };
 
 const Publications: React.FC = () => {
+  const lang = useLang();
   const publications = siteConfig.publications as Publication[];
 
   const grouped = publications.reduce<Record<string, Record<string, Publication[]>>>((acc, pub) => {
@@ -81,7 +83,7 @@ const Publications: React.FC = () => {
                           {pub.doi && <div className="pub-doi">DOI: {pub.doi}</div>}
                           {pub.awards && (
                             <div className="pub-awards">
-                              <span className="pub-award-text">{pub.awards}</span>
+                              <span className="pub-award-text">{tr(pub.awards, lang)}</span>
                             </div>
                           )}
                           {pub.highlight && (
