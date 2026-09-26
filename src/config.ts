@@ -1,3 +1,5 @@
+import type { Loc, Localized } from "./i18n";
+
 export type Publication = {
   year: string;
   month: string;
@@ -7,7 +9,7 @@ export type Publication = {
   authors: string;
   doi?: string;
   url?: string;
-  awards?: string;
+  awards?: Loc<string>;
   awardUrl?: string;
   highlight?: string;
 };
@@ -15,38 +17,59 @@ export type Publication = {
 export type Award = {
   year: string;
   month: string;
-  category: string;
-  venue: string;
+  category: Loc<string>;
+  venue: Loc<string>;
   url?: string;
 };
 
-export type BioDescPart = string | { text: string; url: string };
+/** A run of text, optionally turned into a link. */
+export type TextPart = string | { text: string; url: string };
+
+export type BioItem = {
+  year: string;
+  desc: Localized<TextPart[]>;
+};
 
 export type SiteConfig = {
   name: string;
   nameEn: string;
-  affiliation: (string | { text: string; url: string })[];
+  affiliation: Localized<TextPart[]>;
   contact: {
     email: string;
     x: string;
     github: string;
   };
   biography: {
-    education: { year: string; desc: string | BioDescPart[]; url?: string }[];
-    experience: { year: string; desc: string | BioDescPart[]; url?: string }[];
+    education: BioItem[];
+    experience: BioItem[];
   };
   awards: Award[];
   publications: Publication[];
 };
 
+const NUEE = "https://www.nuee.nagoya-u.ac.jp/";
+const ENGG = "https://www.engg.nagoya-u.ac.jp/";
+const EXDATA = "https://exdata.co.jp/";
+const LAB = "https://ucl.nuee.nagoya-u.ac.jp/";
+
+const GRADUATE_DEPT_EN =
+  "Department of Information and Communication Engineering, Graduate School of Engineering, Nagoya University";
+
 export const siteConfig: SiteConfig = {
   name: "渡辺 圭貴",
   nameEn: "Yoshiki WATANABE",
-  affiliation: [
-    "名古屋大学大学院工学研究科 情報・通信工学専攻",
-    { text: "河口研究室", url: "https://ucl.nuee.nagoya-u.ac.jp/" },
-    "博士後期課程2年",
-  ],
+  affiliation: {
+    ja: [
+      "名古屋大学大学院工学研究科 情報・通信工学専攻",
+      { text: "河口研究室", url: LAB },
+      "博士後期課程2年",
+    ],
+    en: [
+      GRADUATE_DEPT_EN,
+      { text: "Kawaguchi Laboratory", url: LAB },
+      "2nd-year Ph.D. Student",
+    ],
+  },
   contact: {
     email: "yoshiki@ucl.nuee.nagoya-u.ac.jp",
     x: "https://x.com/w4skyyyy",
@@ -56,57 +79,69 @@ export const siteConfig: SiteConfig = {
     education: [
       {
         year: "2025.4 -",
-        desc: [
-          {
-            text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.nuee.nagoya-u.ac.jp/",
-          },
-          " 博士後期課程",
-        ],
+        desc: {
+          ja: [
+            {
+              text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
+              url: NUEE,
+            },
+            " 博士後期課程",
+          ],
+          en: ["Ph.D. Program, ", { text: GRADUATE_DEPT_EN, url: NUEE }],
+        },
       },
       {
         year: "2023.4 - 2025.3",
-        desc: [
-          {
-            text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
-            url: "https://www.nuee.nagoya-u.ac.jp/",
-          },
-          " 博士前期課程",
-        ],
+        desc: {
+          ja: [
+            {
+              text: "名古屋大学大学院工学研究科 情報・通信工学専攻",
+              url: NUEE,
+            },
+            " 博士前期課程",
+          ],
+          en: ["Master's Program, ", { text: GRADUATE_DEPT_EN, url: NUEE }],
+        },
       },
       {
         year: "2019.4 - 2023.3",
-        desc: [
-          {
-            text: "名古屋大学工学部 電気電子情報工学科",
-            url: "https://www.engg.nagoya-u.ac.jp/",
-          },
-        ],
+        desc: {
+          ja: [
+            {
+              text: "名古屋大学工学部 電気電子情報工学科",
+              url: ENGG,
+            },
+          ],
+          en: [
+            {
+              text: "Department of Electrical Engineering, Electronics, and Information Engineering, School of Engineering, Nagoya University",
+              url: ENGG,
+            },
+          ],
+        },
       },
       {
         year: "2015.4 - 2018.3",
-        desc: "愛知県立一宮高等学校",
+        desc: {
+          ja: ["愛知県立一宮高等学校"],
+          en: ["Aichi Prefectural Ichinomiya High School"],
+        },
       },
     ],
     experience: [
       {
         year: "2024.12 -",
-        desc: [
-          {
-            text: "株式会社ExData",
-            url: "https://exdata.co.jp/",
-          },
-          " 取締役",
-        ],
+        desc: {
+          ja: [{ text: "株式会社ExData", url: EXDATA }, " 取締役"],
+          en: ["Director, ", { text: "ExData, Inc.", url: EXDATA }],
+        },
       },
       {
         year: "2023.1 -",
-        desc: [
-          {
-            text: "株式会社ExData",
-            url: "https://exdata.co.jp/",
-          },
-        ],
+        desc: {
+          ja: [{ text: "株式会社ExData", url: EXDATA }],
+          en: [{ text: "ExData, Inc.", url: EXDATA }],
+        },
       },
     ],
   },
@@ -230,7 +265,7 @@ export const siteConfig: SiteConfig = {
       authors:
         "Ryuto Usami, Kisho Watanabe, Yuki Gushi, Shuto Tsutsui, Yoshiki Watanabe, Kazuma Kano, Yuya Aikawa, Kaiya Shimura, Nozomi Hayashida, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
       url: "https://db.uclab.jp/show/1509",
-      awards: "Best Demo Award 受賞",
+      awards: { ja: "Best Demo Award 受賞", en: "Best Demo Award" },
       awardUrl: "https://www.ubicomp.org/ubicomp-iswc-2024/posters-and-demos-program/",
     },
     {
@@ -264,7 +299,7 @@ export const siteConfig: SiteConfig = {
       authors:
         "Yoshiki Watanabe, Nozomi Hayashida, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
       url: "https://db.uclab.jp/show/1484",
-      awards: "Best Demo Award 受賞",
+      awards: { ja: "Best Demo Award 受賞", en: "Best Demo Award" },
       awardUrl: "https://iot-conference.org/iot2023/",
     },
     {

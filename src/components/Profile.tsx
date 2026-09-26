@@ -1,9 +1,41 @@
 import React from 'react';
 import './Profile.css';
-import { siteConfig } from '../config';
+import { siteConfig, type BioItem, type TextPart } from '../config';
+import { tr, ui, useLang } from '../i18n';
+
+const renderParts = (parts: TextPart[]) =>
+  parts.map((part, index) =>
+    typeof part === 'string' ? (
+      part
+    ) : (
+      <a key={index} href={part.url} target="_blank" rel="noopener noreferrer" className="inline-link">
+        {part.text}
+      </a>
+    )
+  );
+
+const BiographyBlock: React.FC<{ label: string; items: BioItem[] }> = ({ label, items }) => {
+  const lang = useLang();
+
+  return (
+    <div className="biography-block">
+      <h4 className="block-label">{label}</h4>
+      <div className="biography-list">
+        {items.map((item, index) => (
+          <div key={index} className="bio-item">
+            <span className="bio-year">{item.year}</span>
+            <span className="bio-desc">{renderParts(item.desc[lang])}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Profile: React.FC = () => {
   const { name, nameEn, affiliation, contact, biography } = siteConfig;
+  const lang = useLang();
+  const isJa = lang === 'ja';
 
   return (
     <section id="profile" className="profile-section">
@@ -16,14 +48,14 @@ const Profile: React.FC = () => {
 
           <div className="profile-content">
             <div className="profile-header">
-              <div className="name-main">{name}</div>
+              <div className="name-main">{isJa ? name : nameEn}</div>
               <div className="name-sub">
-                <span className="en">{nameEn}</span>
+                <span className={isJa ? 'en' : 'ja'}>{isJa ? nameEn : name}</span>
               </div>
             </div>
-            
+
             <div className="affiliation-group">
-              {affiliation.map((item, index) => (
+              {affiliation[lang].map((item, index) => (
                 <div key={index} className="affiliation-item">
                   {typeof item === "string" ? (
                     item
@@ -64,68 +96,10 @@ const Profile: React.FC = () => {
       <div className="container">
         <div id="biography" className="biography-section">
           <h3 className="section-title">BIOGRAPHY</h3>
-          
+
           <div className="biography-blocks">
-            <div className="biography-block">
-              <h4 className="block-label">学歴</h4>
-              <div className="biography-list">
-                {biography.education.map((item, index) => (
-                  <div key={index} className="bio-item">
-                    <span className="bio-year">{item.year}</span>
-                    <span className="bio-desc">
-                      {Array.isArray(item.desc) ? (
-                        item.desc.map((part, i) => 
-                          typeof part === 'string' ? (
-                            part
-                          ) : (
-                            <a key={i} href={part.url} target="_blank" rel="noopener noreferrer" className="inline-link">
-                              {part.text}
-                            </a>
-                          )
-                        )
-                      ) : item.url ? (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-link">
-                          {item.desc}
-                        </a>
-                      ) : (
-                        item.desc
-                      )}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="biography-block">
-              <h4 className="block-label">職歴</h4>
-              <div className="biography-list">
-                {biography.experience.map((item, index) => (
-                  <div key={index} className="bio-item">
-                    <span className="bio-year">{item.year}</span>
-                    <span className="bio-desc">
-                      {Array.isArray(item.desc) ? (
-                        item.desc.map((part, i) => 
-                          typeof part === 'string' ? (
-                            part
-                          ) : (
-                            <a key={i} href={part.url} target="_blank" rel="noopener noreferrer" className="inline-link">
-                              {part.text}
-                            </a>
-                          )
-                        )
-                      ) : item.url ? (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-link">
-                          {item.desc}
-                        </a>
-                      ) : (
-                        item.desc
-                      )}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+            <BiographyBlock label={tr(ui.education, lang)} items={biography.education} />
+            <BiographyBlock label={tr(ui.experience, lang)} items={biography.experience} />
           </div>
         </div>
       </div>

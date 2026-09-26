@@ -24,6 +24,12 @@
   font-weight: 700;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
 .nav ul {
   display: flex;
   gap: 30px;
@@ -64,6 +70,33 @@
 
 .nav a:hover::after {
   width: 100%;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.lang-switch-link {
+  color: var(--text-muted);
+}
+
+.lang-switch-link:hover {
+  color: var(--primary);
+}
+
+.lang-switch-link.is-active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.lang-switch-divider {
+  color: var(--secondary);
 }
 
 @media (max-width: 768px) {
