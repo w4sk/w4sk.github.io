@@ -43,7 +43,7 @@ const Profile: React.FC = () => {
         {/* Profile Main Row (Name and Image) */}
         <div className="profile-main-row">
           <div className="profile-image-container">
-            <img src="/assets/profile.png" alt={nameEn} className="profile-image" />
+            <img src="/assets/profile.jpg" alt={nameEn} className="profile-image" />
           </div>
 
           <div className="profile-content">
