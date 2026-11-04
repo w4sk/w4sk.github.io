@@ -9,7 +9,8 @@ export type Publication = {
   authors: string;
   doi?: string;
   url?: string;
-  awards?: Loc<string>;
+  /** One award, or several when the same paper received more than one. */
+  awards?: Loc<string> | Loc<string>[];
   awardUrl?: string;
   highlight?: string;
 };
@@ -46,6 +47,10 @@ export type SiteConfig = {
   awards: Award[];
   publications: Publication[];
 };
+
+/** The awards on a publication, always as a list. */
+export const awardsOf = (pub: Publication): Loc<string>[] =>
+  pub.awards === undefined ? [] : [pub.awards].flat();
 
 const NUEE = "https://www.nuee.nagoya-u.ac.jp/";
 const ENGG = "https://www.engg.nagoya-u.ac.jp/";
@@ -157,6 +162,40 @@ export const siteConfig: SiteConfig = {
   publications: [
     {
       year: "2026",
+      month: "10",
+      type: "Workshop",
+      title:
+        "Toward Understanding Subjective Spatial Interpretation: An Analysis of Action Deviation from Place Affordances",
+      journal:
+        "International Workshop on Reality Mediation (IWRM 2026) @ UbiComp/ISWC 2026",
+      authors:
+        "Yoshiki Watanabe, Kaiya Shimura, Hideki Deguchi, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+      url: "https://db.uclab.jp/show/1591",
+    },
+    {
+      year: "2026",
+      month: "07",
+      type: "International Conference",
+      title:
+        "Bridging Strange and Familiar: Design of Knowledge Expansion System via Daily Surroundings",
+      journal:
+        "2026 IEEE 50th Annual Computers, Software, and Applications Conference (COMPSAC)",
+      authors:
+        "Kohei Matsumoto, Hideki Deguchi, Yoshiki Watanabe, Kaiya Shimura, Nozomi Hayashida, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+      url: "https://db.uclab.jp/show/1592",
+    },
+    {
+      year: "2026",
+      month: "06",
+      type: "Journal",
+      title: "MetaUniTour：文化融合と共有体験を実現するメタバース観光システム",
+      journal: "情報処理学会論文誌",
+      authors:
+        "松本 亘平, 渡辺 圭貴, 志村 魁哉, 林田 望海, 片山 晋, 浦野 健太, 河口 信夫, 青木 崇行, レレイト エマニュエル, 米澤 拓郎",
+      url: "https://db.uclab.jp/show/1590",
+    },
+    {
+      year: "2026",
       month: "06",
       type: "Domestic Conference",
       title:
@@ -165,8 +204,28 @@ export const siteConfig: SiteConfig = {
       authors:
         "渡辺 圭貴, 志村 魁哉, 出口 秀輝, 浦野 健太, 米澤 拓郎, 河口 信夫",
       url: "https://db.uclab.jp/show/1582",
-      awards: "ヤングリサーチャー賞 受賞",
+      awards: ["優秀論文賞 受賞", "ヤングリサーチャー賞 受賞"],
       awardUrl: "https://dicomo.org/commendation/",
+    },
+    {
+      year: "2026",
+      month: "06",
+      type: "Domestic Conference",
+      title: "遠隔ロボットアームシステムにおけるVR映像に基づく把持作業支援",
+      journal: "マルチメディア、分散、協調とモバイル(DICOMO 2026) シンポジウム",
+      authors:
+        "坪内 陸斗, 筒井 秀斗, 出口 秀輝, 渡辺 圭貴, 志村 魁哉, 林田 望海, Felix Jimenez, 浦野 健太, 米澤 拓郎, 河口 信夫",
+      url: "https://db.uclab.jp/show/1593",
+    },
+    {
+      year: "2026",
+      month: "06",
+      type: "Domestic Conference",
+      title: "環境情報とユーザ嗜好に基づくARを用いた知識拡張手法の検討",
+      journal: "マルチメディア、分散、協調とモバイル(DICOMO 2026) シンポジウム",
+      authors:
+        "松本 亘平, 出口 秀輝, 渡辺 圭貴, 志村 魁哉, 林田 望海, 浦野 健太, 米澤 拓郎, 河口 信夫",
+      url: "https://db.uclab.jp/show/1589",
     },
     {
       year: "2025",
