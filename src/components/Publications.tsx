@@ -1,6 +1,6 @@
 import React from 'react';
 import './Publications.css';
-import { siteConfig, type Publication } from '../config';
+import { awardsOf, siteConfig, type Publication } from '../config';
 import { tr, useLang } from '../i18n';
 
 const MY_NAMES = ["渡辺 圭貴", "渡辺圭貴", "Yoshiki Watanabe"];
@@ -81,11 +81,11 @@ const Publications: React.FC = () => {
                           <div className="pub-authors">{renderAuthors(pub.authors)}</div>
                           <div className="pub-venue">{pub.journal}</div>
                           {pub.doi && <div className="pub-doi">DOI: {pub.doi}</div>}
-                          {pub.awards && (
-                            <div className="pub-awards">
-                              <span className="pub-award-text">{tr(pub.awards, lang)}</span>
+                          {awardsOf(pub).map((award, i) => (
+                            <div key={i} className="pub-awards">
+                              <span className="pub-award-text">{tr(award, lang)}</span>
                             </div>
-                          )}
+                          ))}
                           {pub.highlight && (
                             <div className="pub-highlight">
                               <span className="pub-highlight-text">{pub.highlight}</span>

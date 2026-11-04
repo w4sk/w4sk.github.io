@@ -1,6 +1,6 @@
 import React from 'react';
 import './Awards.css';
-import { siteConfig } from '../config';
+import { awardsOf, siteConfig } from '../config';
 import { tr, useLang } from '../i18n';
 
 type ResolvedAward = {
@@ -14,15 +14,18 @@ type ResolvedAward = {
 const Awards: React.FC = () => {
   const lang = useLang();
 
-  const derived: ResolvedAward[] = siteConfig.publications
-    .filter((p) => p.awards)
-    .map((p) => ({
+  const derived: ResolvedAward[] = siteConfig.publications.flatMap((p) => {
+    const names = awardsOf(p).map((award) => tr(award, lang).replace(/\s*受賞\s*$/, ''));
+    if (names.length === 0) return [];
+    // 同じ論文への複数の受賞は1行にまとめる。
+    return [{
       year: p.year,
       month: p.month,
-      category: tr(p.awards!, lang).replace(/\s*受賞\s*$/, ''),
+      category: names.join('・'),
       venue: p.journal,
       url: p.awardUrl,
-    }));
+    }];
+  });
 
   const listed: ResolvedAward[] = siteConfig.awards.map((a) => ({
     ...a,
